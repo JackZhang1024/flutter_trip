@@ -7,6 +7,7 @@ import 'package:flutter_trip/model/common_model.dart';
 import 'package:flutter_trip/model/grid_nav_model.dart';
 import 'package:flutter_trip/model/home_model.dart';
 import 'package:flutter_trip/model/sales_box_model.dart';
+import 'package:flutter_trip/pages/search_page.dart';
 import 'package:flutter_trip/widget/grid_nav.dart';
 import 'package:flutter_trip/widget/loading_container.dart';
 import 'package:flutter_trip/widget/local_nav.dart';
@@ -161,34 +162,34 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
-            // AppBar 渐变遮照背景
-            gradient: LinearGradient(colors: [Color(0x66000000), Colors.transparent], begin: Alignment.topCenter, end: Alignment.bottomCenter)
-          ),
+              // AppBar 渐变遮照背景
+              gradient: LinearGradient(
+                  colors: [Color(0x66000000), Colors.transparent],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter)),
           child: Container(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             height: 80.0,
             decoration: BoxDecoration(
-              color: Color.fromARGB((appBarAlpha*255).toInt(), 255, 255, 255)
-            ),
+                color:
+                    Color.fromARGB((appBarAlpha * 255).toInt(), 255, 255, 255)),
             child: SearchBar(
-              searchBarType: appBarAlpha >0.2? SearchBarType.homeLight: SearchBarType.home,
+              searchBarType: appBarAlpha > 0.2
+                  ? SearchBarType.homeLight
+                  : SearchBarType.home,
               inputBoxClick: _jumpToSearch,
               speakClick: _jumpToSpeak,
               defaultText: SEARCH_BAR_DEFAULT_TEXT,
-              leftButtonClick: (){
-
-              },
+              leftButtonClick: () {},
             ),
           ),
         ),
         Container(
-          height: appBarAlpha> 0.2? 0.5 : 0,
+          height: appBarAlpha > 0.2 ? 0.5 : 0,
           decoration: BoxDecoration(
-            boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 0.5)]
-          ),
+              boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 0.5)]),
         )
       ],
-
     );
   }
 
@@ -217,15 +218,12 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 
-
-
   void _jumpToSearch() {
-
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => SearchPage(hint: SEARCH_BAR_DEFAULT_TEXT)));
   }
 
-  void _jumpToSpeak() {
-
-  }
-
-
+  void _jumpToSpeak() {}
 }
