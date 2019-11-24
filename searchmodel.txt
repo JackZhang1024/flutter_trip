@@ -1,0 +1,16 @@
+"data":[
+        {
+            "code":"district_1",
+            "word":"北京",
+            "type":"district",
+            "districtname":"中国",
+            "url":"http://m.ctrip.com/webapp/you/place/1.html"
+        },
+        {
+                    "code":"districtsight_1",
+                    "word":"北京·热门景点",
+                    "type":"sight",
+                    "districtname":"",
+                    "url":"https://m.ctrip.com/webapp/you/sight/1.html"
+        },
+      ]

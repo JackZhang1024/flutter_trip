@@ -28,7 +28,7 @@ class _TabNavigatorState extends State<TabNavigator> {
         children: <Widget>[
           // 要显示的页面
           HomePage(),
-          SearchPage(),
+          SearchPage(hideLeft: true),
           TravelPage(),
           MyPage()
         ],
