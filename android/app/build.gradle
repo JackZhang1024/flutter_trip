@@ -44,6 +44,10 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+
+        }
     }
 
     buildTypes {
@@ -53,15 +57,32 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    // x86 是为了能够在模拟器进行运行 
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libapp.so'
+        pickFirst 'lib/x86/libapp.so'
+        pickFirst 'lib/x86_64/libapp.so'
+        pickFirst 'lib/arm64-v8a/libapp.so'
+
+        pickFirst 'lib/armeabi-v7a/libflutter.so'
+        pickFirst 'lib/x86/libflutter.so'
+        pickFirst 'lib/x86_64/libflutter.so'
+        pickFirst 'lib/arm64-v8a/libflutter.so'
+    }
+
 }
 
 flutter {
     source '../..'
 }
 
+
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(path: ':asr_plugin')
 }
