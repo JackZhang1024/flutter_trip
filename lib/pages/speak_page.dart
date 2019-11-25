@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_trip/pages/search_page.dart';
+import 'package:flutter_trip/plugin/asr_manager.dart';
 
 class SpeakPage extends StatefulWidget {
   @override
@@ -134,14 +136,37 @@ class _SpeakPageState extends State<SpeakPage>
 
   _speakStart() {
     controller.forward();
+    setState(() {
+      speakTips = '- 识别中 -';
+    });
+    AsrManager.start().then((text) {
+      if (text != null && text.length > 0) {
+        setState(() {
+          speakResult = text;
+          Navigator.pop(context);
+          Navigator.push(context, MaterialPageRoute(
+             builder: (context)=>SearchPage(keyword: text)
+          ));
+        });
+        print('==============$text');
+      }
+    }).catchError((e){
+       print(e);
+    });
   }
 
+
   _speakStop() {
+    setState(() {
+      speakTips = '长按说话';
+    });
     controller.reset();
     controller.stop();
+    AsrManager.stop();
   }
 
 }
+
 
 const double MIC_SIZE = 80.0;
 
@@ -168,6 +193,4 @@ class AnimatedMic extends AnimatedWidget {
       ),
     );
   }
-
-
 }

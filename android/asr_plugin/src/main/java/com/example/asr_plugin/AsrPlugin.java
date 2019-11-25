@@ -24,9 +24,11 @@ public class AsrPlugin implements MethodChannel.MethodCallHandler {
     private AsrManager asrManager;
 
     public static void registerWith(PluginRegistry.Registrar registrar) {
+        Log.e(TAG, "registerWith: start");
         MethodChannel channel = new MethodChannel(registrar.messenger(), "asr_plugin");
         AsrPlugin instance = new AsrPlugin(registrar);
         channel.setMethodCallHandler(instance);
+        Log.e(TAG, "registerWith: end ");
     }
 
     private AsrPlugin(PluginRegistry.Registrar registrar) {

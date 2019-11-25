@@ -15,7 +15,7 @@ public class AsrPluginRegistrant {
     }
 
     private static boolean alreadyRegisteredWith(PluginRegistry registry) {
-        final String key = GeneratedPluginRegistrant.class.getCanonicalName();
+        final String key = AsrPluginRegistrant.class.getCanonicalName();
         if (registry.hasPlugin(key)) {
             return true;
         }

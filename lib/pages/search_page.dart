@@ -45,6 +45,16 @@ class _SearchPageState extends State<SearchPage> {
   SearchModel searchModel;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    if (widget.keyword!=null){
+        _onTextChange(widget.keyword);
+    }
+    super.initState();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(

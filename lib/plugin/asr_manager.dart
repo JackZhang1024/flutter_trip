@@ -5,7 +5,7 @@ class AsrManager {
 
   // 开始录音
   static Future<String> start({Map params}) async {
-    return await _channel.invokeMethod('start', params);
+    return await _channel.invokeMethod('start', params ?? {});
   }
 
   // 停止录音
